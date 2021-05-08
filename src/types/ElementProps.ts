@@ -1,0 +1,1 @@
+export type ElementProps<Element extends keyof JSX.IntrinsicElements = "div"> = JSX.IntrinsicElements[Element];
