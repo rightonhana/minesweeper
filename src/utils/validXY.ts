@@ -2,8 +2,8 @@ import { Tuple } from "../types/Tuple";
 
 /**
  * Validate a position in a matrix
- * @param matrix matrix
- * @param param1 position [x, y]
+ * @param matrix Matrix
+ * @param param1 Position [x, y]
  */
 export const validXY = <Item = unknown>(
 	matrix: Item[][],

@@ -6,7 +6,7 @@ import validXY from "./validXY";
 /**
  * Increment cell value based on a given [x, y]
  * @param state Minesweeper state matrix
- * @param param1 Position [x, y]
+ * @param param1 Position to increment value
  */
 export const incrementCellValue = (
 	state: MinesweeperState[][],

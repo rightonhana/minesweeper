@@ -5,7 +5,7 @@ import validXY from "./validXY";
 /**
  * Set a Cell value based on a given [x, y]
  * @param state Minesweeper state matrix
- * @param param1 Position get the valid neighbors positions
+ * @param param1 Cell position to be updated
  * @param value value to update
  */
 export const setCellValue = (
