@@ -1,7 +1,7 @@
 import { css } from "@emotion/css";
 import { FC } from "react";
-import { ReactComponent as Bomb } from "../../images/bomb.svg";
-import { ReactComponent as Flag } from "../../images/flag.svg";
+import { ReactComponent as Bomb } from "../../assets/bomb.svg";
+import { ReactComponent as Flag } from "../../assets/flag.svg";
 import CellProps from "./CellProps";
 
 export const Cell: FC<CellProps> = ({ 
