@@ -37,7 +37,9 @@ export const Cell: FC<CellProps> = ({
 		justify-content: center;
 		margin: 0;
 		width: 2rem;
-		background-color: rgba(20,30,48, 0.9);
+		background-color: ${discovered ? "#ccc" : "rgba(20,30,48, 0.9);"};
+		user-select: none;
+		${discovered ? "pointer-events: none;" : "cursor: pointer;"}
 
 		:hover {
 			background-color: rgba(20,30,48, 1);

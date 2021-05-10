@@ -1,8 +1,8 @@
 :root {
 	--number0: transparent;
-	--number1: gray;
-	--number2: blue;
-	--number3: green;
+	--number1: black;
+	--number2: green;
+	--number3: blue;
 	--number4: red;
 	--text: black;
 	--cell-undiscovered: #f0f;
