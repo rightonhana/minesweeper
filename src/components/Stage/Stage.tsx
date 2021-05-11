@@ -21,7 +21,7 @@ export const Stage: FC<StageProps> = ({
 					calc(${width} / ${stage[0].length})rem
 				);
 				grid-template-columns: repeat(${stage[0].length}, 1fr);
-				grid-gap: 0.5rem;
+				grid-gap: 0.2rem;
 			`} {...props} >
 			{stage.map((row, x) =>
 				row.map((cell, y) => 
