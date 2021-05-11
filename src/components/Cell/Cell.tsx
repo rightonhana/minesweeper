@@ -55,7 +55,7 @@ export const Cell: FC<CellProps> = ({
 		${discovered ? "pointer-events: none;" : "cursor: pointer;"}
 
 		:hover {
-			background-color: rgba(20,30,48, 1);
+			background-color: ${discovered ? "#ccc" : "rgba(20,30,48, 1)"};
 		}
 
 		svg {
