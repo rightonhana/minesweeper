@@ -7,7 +7,7 @@ import validPositions from "./validPositions";
  * @param state Minesweeper state matrix
  * @param param1 Position to check
  */
-export const minesNearby = (state: MinesweeperState[][], [x, y]: Tuple<number>) => 
+export const minesNearby = (state: MinesweeperState[][], [x, y]: Tuple<number>): boolean => 
 	validPositions(state, [x, y]).some(([currentX, currentY]) => state[currentX][currentY].bomb);
 
 
