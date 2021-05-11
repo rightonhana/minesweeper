@@ -7,9 +7,9 @@ import setCellValue from "../setCellValue";
  * @param state Minesweeper state matrix
  * @param param1 Cell position to be updated
  */
-export const toggleFlagValue = (state: MinesweeperState[][], [x, y]: Tuple<number>, value:boolean) => setCellValue(state, [x, y], {
+export const toggleFlagValue = (state: MinesweeperState[][], [x, y]: Tuple<number>) => setCellValue(state, [x, y], {
 	...state[x][y],
-	flag: !value,
+	flag: !state[x][y].flag,
 });
 
 export default toggleFlagValue;
