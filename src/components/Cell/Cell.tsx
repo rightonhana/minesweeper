@@ -4,6 +4,11 @@ import { ReactComponent as Bomb } from "../../assets/bomb.svg";
 import { ReactComponent as Flag } from "../../assets/flag.svg";
 import CellProps from "./CellProps";
 
+/**TODO: 
+ * - Disabled button when discovered
+ * - Change icons
+ * - Clear code
+ */
 export const Cell: FC<CellProps> = ({ 
 	bomb,
 	discovered,
@@ -23,7 +28,15 @@ export const Cell: FC<CellProps> = ({
 							? "var(--number3)"
 							: (discovered && !bomb && value === 4)
 								? "var(--number4)"
-								: "var(--text)"
+								: (discovered && !bomb && value === 5)
+									? "var(--number5)"
+									: (discovered && !bomb && value === 6)
+										? "var(--number6)"
+										: (discovered && !bomb && value === 7)
+											? "var(--number7)"
+											: (discovered && !bomb && value === 8)
+												? "var(--number8)"
+												: "var(--text)"
 		};
 
 		align-items: center;
@@ -31,7 +44,7 @@ export const Cell: FC<CellProps> = ({
 		border-radius: 10%;
 		cursor: pointer;
 		display: flex;
-		font-size: 2vw;
+		font-size: 1rem;
 		font-weight: bold;
 		height: 2rem;
 		justify-content: center;

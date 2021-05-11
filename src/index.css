@@ -4,9 +4,11 @@
 	--number2: green;
 	--number3: blue;
 	--number4: red;
+	--number5: orange;
+	--number6: purple;
+	--number7: salmon;
+	--number8: brown;
 	--text: black;
-	--cell-undiscovered: #f0f;
-	--cell-discovered: #0f0;
 }
 
 body {
