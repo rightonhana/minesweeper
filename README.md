@@ -1,7 +1,8 @@
 # minesweeper
 
-## Technology stack
+## Technologies
 
 - React
 - Typescript
 - Emotion
+- Material UI
