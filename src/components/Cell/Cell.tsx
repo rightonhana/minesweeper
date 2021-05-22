@@ -5,7 +5,6 @@ import { ReactComponent as Flag } from "../../assets/flag.svg";
 import CellProps from "./CellProps";
 
 /**TODO: 
- * - Disabled button when discovered
  * - Change icons
  * - Clear code
  */
@@ -42,7 +41,6 @@ export const Cell: FC<CellProps> = ({
 		align-items: center;
 		border: 1rem solid ${ discovered ? "var(--cell-discovered)" : "var(--cell-undiscovered)"} transparent;
 		border-radius: 10%;
-		cursor: pointer;
 		display: flex;
 		font-size: 1rem;
 		font-weight: bold;
@@ -63,7 +61,7 @@ export const Cell: FC<CellProps> = ({
 			height: 2rem;
 			fill: var(--text);
 		}
-	`} {...props}>
+	`} disabled={discovered} {...props}>
 		{ flag ? <Flag/> : (!discovered ? "" : (discovered && bomb ? <Bomb/> : value)) }
 	</button>
 );
