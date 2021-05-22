@@ -35,13 +35,11 @@ export const Game: FC<{}> = ({ ...props }) => {
 		onGameWin
 	} = useGame(EASY);
 
-	/**TODO: 
-	 * 		 first click bomb -> that shouldn't happen
-	 * 		state doesnt update on 1st click
+	/**TODO:
 	 * 		spread empty zone on click
-	 * 		onDefeat -> disabled all buttons on stagez
-	 * 		when a all cells discovered -> u should win... but for some reason you not -> clock still runing
-	 * 		click on flag shouldn't discover the cell 
+	 * 		onDiscover -> <button disable> attribute,
+	 * 		onDefeat -> disabled all buttons on stage
+	 * 		when a all cells discovered -> u should win... but for some reason you not -> clock still running
 	 * 
 	 * 		update colors
 	 */
@@ -63,11 +61,11 @@ export const Game: FC<{}> = ({ ...props }) => {
 		pauseStopwatch();
 	}
 	
-		const onDefeat = (state: MinesweeperState[][]) => {
-			onGameDefeat();
-			pauseStopwatch();
-			return revealBombs(state)
-		}
+	const onDefeat = (state: MinesweeperState[][]) => {
+		onGameDefeat();
+		pauseStopwatch();
+		return revealBombs(state)
+	}
 	
 	const onChangeDifficult = (level: LevelData) => (event: MouseEvent<HTMLButtonElement>) => {
 		selectDifficult(level)
@@ -82,15 +80,17 @@ export const Game: FC<{}> = ({ ...props }) => {
 				: discoverEmptyZone(state, [x, y]));
 
 	const updateCell = ([x, y]: Tuple<number>) => {
-		if (firstClick) {
-			if (timer === 0) {
-				startStopwatch();
-			}
-			onFirstClick([x, y]);
-		} else {
-			setStage(discoverZone(stage, [x, y]));
-			if (isGameComplete(stage, levelDifficult)) {
-				onWin();
+		if (!stage[x][y].flag) {
+			if (firstClick) {
+				if (timer === 0) {
+					startStopwatch();
+				}
+				onFirstClick([x, y]);
+			} else {
+				setStage(discoverZone(stage, [x, y]));
+				if (isGameComplete(stage, levelDifficult)) {
+					onWin();
+				}
 			}
 		}
 	}
