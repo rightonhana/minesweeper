@@ -16,11 +16,15 @@ export const randomNewPosition = (
 ): Tuple<number> => {
 	const position = randomPosition(cols, rows);
 
-	return (firstX !== position[0] && firstY !== position[1]) && positions.some(
-		([x, y] = [-1, -1]) => x === position[0] && y === position[1]
-	)
+	return (firstX === position[0] && firstY === position[1])
 		? randomNewPosition(positions, cols, rows, [firstX, firstY])
-		: position;
+		: ( positions.some(
+				([x, y] = [-1, -1]) => x === position[0] && y === position[1]
+			)
+			? randomNewPosition(positions, cols, rows, [firstX, firstY])
+			: position
+		);
+		
 };
 
 export default randomNewPosition;
