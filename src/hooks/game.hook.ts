@@ -51,17 +51,18 @@ export const useGame = (level = EASY,) => {
 	}
 
 	const onFirstClick = ([x, y]: Tuple<number>) => {
+		const bombsPositions = generateBombsPositions(
+			levelDifficult.width,
+			levelDifficult.height,
+			levelDifficult.bombs,
+			[x, y]
+		);
 		const newStage = setBombsRadiuses(
 			stage,
-			generateBombsPositions(
-				levelDifficult.width,
-				levelDifficult.height,
-				levelDifficult.bombs,
-				[x, y]
-			)
+			bombsPositions
 		);
-		setStage(discoverZone(newStage, [x, y]));
-		setStage(newStage);
+		const discover = discoverZone(newStage, [x, y]);
+		setStage(discover);
 		setFirstClick(false);
 		setGameStarted(true);
 	}
