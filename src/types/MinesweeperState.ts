@@ -1,5 +1,5 @@
 export type MinesweeperState = {
-	bomb: boolean;
+	mine: boolean;
 	discovered: boolean;
 	flag: boolean;
 	value: number;

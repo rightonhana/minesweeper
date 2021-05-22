@@ -10,7 +10,7 @@ import validPositions from "./validPositions";
  * @param param1 Position clicked
  */
 export const discoverEmptyZone = (state:MinesweeperState[][], [x,y]:Tuple<number>): MinesweeperState[][] => 
-	!state[x][y].bomb && !minesNearby(state, [x,y])
+	!state[x][y].mine && !minesNearby(state, [x,y])
 		? validPositions(state, [x, y]).reduce((newState: MinesweeperState[][], [validPositionX, validPositionY]: Tuple<number>)=> {
 			return !newState[validPositionX][validPositionY].flag
 				? setDiscovered(newState, [validPositionX, validPositionY])

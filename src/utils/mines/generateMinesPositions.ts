@@ -2,20 +2,20 @@ import Tuple from "../../types/Tuple";
 import randomNewPosition from "./randomNewPosition";
 
 /**
- * Generate bombs positions
+ * Generate mines positions
  * @param cols Column number
  * @param rows Rows number
- * @param bombs Bombs number
+ * @param mines Mines number
  * @param param1 [x, y] position
  */
-export const generateBombsPositions = (
+export const generateMinesPositions = (
 	cols: number,
 	rows: number,
-	bombs: number,
+	mines: number,
 	[x, y]: Tuple<number>
 ): Tuple<number>[] => {
 	/**
-	 * Takes an array of bombs and returns a random x and y avoiding duplication.
+	 * Takes an array of mines and returns a random x and y avoiding duplication.
 	 * @param positions [x, y] positions
 	 * @param param1 [x, y] position
 	 * @param index Index value
@@ -30,7 +30,7 @@ export const generateBombsPositions = (
 		return index + 1 === positions.length ? newArray : loop(newArray, [x, y], index + 1);
 	};
 
-	return loop([...new Array(bombs)], [x, y]);
+	return loop([...new Array(mines)], [x, y]);
 };
 
-export default generateBombsPositions;
+export default generateMinesPositions;

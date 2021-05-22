@@ -8,8 +8,8 @@ import cellsDiscovered from "./cellsDiscovered";
  * @param level Level information
  */
 export const isGameComplete = (state: MinesweeperState[][], level: LevelData): boolean => {
-	const cellsWithoutMines = level.width * level.height - level.bombs;
-	const currentCellsDiscovered = cellsDiscovered(state) - level.bombs;
+	const cellsWithoutMines = level.width * level.height - level.mines;
+	const currentCellsDiscovered = cellsDiscovered(state) - level.mines;
 	return currentCellsDiscovered === cellsWithoutMines;
 }
 

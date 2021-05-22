@@ -9,7 +9,7 @@ import CellProps from "./CellProps";
  * - Clear code
  */
 export const Cell: FC<CellProps> = ({ 
-	bomb,
+	mine,
 	discovered,
 	flag,
 	value,
@@ -17,23 +17,23 @@ export const Cell: FC<CellProps> = ({
 }) => (
 	<button className={css`
 		color: ${
-			(discovered && !bomb && value === 0)
+			(discovered && !mine && value === 0)
 				? "var(--number0)"
-				: (discovered && !bomb && value === 1)
+				: (discovered && !mine && value === 1)
 					? "var(--number1)"
-					: (discovered && !bomb && value === 2)
+					: (discovered && !mine && value === 2)
 						? "var(--number2)"
-						: (discovered && !bomb && value === 3)
+						: (discovered && !mine && value === 3)
 							? "var(--number3)"
-							: (discovered && !bomb && value === 4)
+							: (discovered && !mine && value === 4)
 								? "var(--number4)"
-								: (discovered && !bomb && value === 5)
+								: (discovered && !mine && value === 5)
 									? "var(--number5)"
-									: (discovered && !bomb && value === 6)
+									: (discovered && !mine && value === 6)
 										? "var(--number6)"
-										: (discovered && !bomb && value === 7)
+										: (discovered && !mine && value === 7)
 											? "var(--number7)"
-											: (discovered && !bomb && value === 8)
+											: (discovered && !mine && value === 8)
 												? "var(--number8)"
 												: "var(--text)"
 		};
@@ -62,7 +62,7 @@ export const Cell: FC<CellProps> = ({
 			fill: var(--text);
 		}
 	`} disabled={discovered} {...props}>
-		{ flag ? <Flag/> : (!discovered ? "" : (discovered && bomb ? <Bomb/> : value)) }
+		{ flag ? <Flag/> : (!discovered ? "" : (discovered && mine ? <Bomb/> : value)) }
 	</button>
 );
 

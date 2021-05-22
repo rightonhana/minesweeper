@@ -1,12 +1,12 @@
 import MinesweeperState from "../../types/MinesweeperState";
 
 /**
- * Reveal all level bombs
+ * Reveal all level mines
  * @param state Minesweeper state matrix
  */
-export const revealBombs = (state: MinesweeperState[][]) => 
+export const revealMines = (state: MinesweeperState[][]) => 
 	state.map((row: MinesweeperState[]) =>
 		row.map((column: MinesweeperState) =>
-			column.bomb ? { ...column, discovered: true } : column));
+			column.mine ? { ...column, discovered: true } : column));
 
-export default revealBombs;
+export default revealMines;

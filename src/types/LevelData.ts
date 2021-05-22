@@ -1,5 +1,5 @@
 export type LevelData = {
-	bombs: number;
+	mines: number;
 	height: number;
 	width: number;
 };

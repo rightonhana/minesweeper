@@ -3,11 +3,11 @@ import { Tuple } from "../../types/Tuple";
 import incrementCellValue from "../incrementCellValue";
 
 /**
- * Set cell values of bomb radius
+ * Set cell values of mine radius
  * @param state Minesweeper state matrix
- * @param param1 Bomb position
+ * @param param1 Mine position
  */
-export const setBombRadius = (
+export const setMineRadius = (
 	state: MinesweeperState[][],
 	[x, y]: Tuple<number>
 ) => ([
@@ -21,4 +21,4 @@ export const setBombRadius = (
 		[x + 1, y + 1],
 ] as Tuple<number>[]).reduce(incrementCellValue, state);
 
-export default setBombRadius;
+export default setMineRadius;

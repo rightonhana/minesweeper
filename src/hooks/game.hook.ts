@@ -4,12 +4,12 @@ import { INITIAL_STATE } from "../constants/initialState";
 import LevelData from "../types/LevelData";
 import MinesweeperState from "../types/MinesweeperState";
 import Tuple from "../types/Tuple";
-import generateBombsPositions from "../utils/bombs/generateBombsPositions";
-import setBombsRadiuses from "../utils/bombs/setBombRadiuses";
 import createStage from "../utils/createStage";
 import discoverZone from "../utils/discoverZone";
 import flagsUsed from "../utils/flag/flagsUsed";
 import toggleFlagValue from "../utils/flag/toggleFlagValue";
+import generateMinesPositions from "../utils/mines/generateMinesPositions";
+import setMinesRadiuses from "../utils/mines/setMinesRadiuses";
 
 export const useGame = (level = EASY,) => {
 	const [levelDifficult, setLevelDifficult] = useState<LevelData>(level);
@@ -45,21 +45,21 @@ export const useGame = (level = EASY,) => {
 	}
 
 	const toggleFlagCell = ([x, y]: Tuple<number>) => {
-		if (flagsUsed(stage) <= levelDifficult.bombs || stage[x][y].flag) {
+		if (flagsUsed(stage) <= levelDifficult.mines || stage[x][y].flag) {
 			setStage(toggleFlagValue(stage, [x, y]));
 		}
 	}
 
 	const onFirstClick = ([x, y]: Tuple<number>) => {
-		const bombsPositions = generateBombsPositions(
+		const minesPositions = generateMinesPositions(
 			levelDifficult.width,
 			levelDifficult.height,
-			levelDifficult.bombs,
+			levelDifficult.mines,
 			[x, y]
 		);
-		const newStage = setBombsRadiuses(
+		const newStage = setMinesRadiuses(
 			stage,
-			bombsPositions
+			minesPositions
 		);
 		const discover = discoverZone(newStage, [x, y]);
 		setStage(discover);

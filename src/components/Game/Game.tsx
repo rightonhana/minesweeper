@@ -9,9 +9,9 @@ import useStopwatch from "../../hooks/stopwatch.hook";
 import LevelData from "../../types/LevelData";
 import MinesweeperState from "../../types/MinesweeperState";
 import Tuple from "../../types/Tuple";
-import revealBombs from "../../utils/bombs/revealBombs";
 import discoverEmptyZone from "../../utils/discoverEmptyZone";
 import isGameComplete from "../../utils/isGameComplete";
+import revealMines from "../../utils/mines/revealMines";
 import minesNearby from "../../utils/minesNearby";
 import setDiscovered from "../../utils/setDiscovered";
 import Stage from "../Stage";
@@ -64,7 +64,7 @@ export const Game: FC<{}> = ({ ...props }) => {
 	const onDefeat = (state: MinesweeperState[][]) => {
 		onGameDefeat();
 		pauseStopwatch();
-		return revealBombs(state)
+		return revealMines(state)
 	}
 	
 	const onChangeDifficult = (level: LevelData) => (event: MouseEvent<HTMLButtonElement>) => {
@@ -73,7 +73,7 @@ export const Game: FC<{}> = ({ ...props }) => {
 	}
 	
 	const discoverZone = (state: MinesweeperState[][], [x, y]: Tuple<number>) =>
-		state[x][y].bomb
+		state[x][y].mine
 			? onDefeat(state)
 			: (!state[x][y].flag && minesNearby(state, [x, y])
 				? setDiscovered(state, [x, y])

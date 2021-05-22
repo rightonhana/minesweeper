@@ -6,7 +6,7 @@ import MinesweeperState from "../types/MinesweeperState";
  */
 export const cellsDiscovered = (state: MinesweeperState[][]) => state.reduce((total, rows) => {
 	return rows.reduce((acc, cell) => {
-		return cell.discovered && !cell.bomb ? acc + 1 : acc;
+		return cell.discovered && !cell.mine ? acc + 1 : acc;
 	},0) + total;
 }, 0);
 
