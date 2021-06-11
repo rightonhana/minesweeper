@@ -1,11 +1,10 @@
 import { css } from "@emotion/css";
+import Flag from "@material-ui/icons/Flag";
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { FC } from "react";
-import { ReactComponent as Bomb } from "../../assets/bomb.svg";
-import { ReactComponent as Flag } from "../../assets/flag.svg";
 import CellProps from "./CellProps";
 
-/**TODO: 
- * - Change icons
+/**TODO:
  * - Clear code
  */
 export const Cell: FC<CellProps> = ({ 
@@ -43,17 +42,17 @@ export const Cell: FC<CellProps> = ({
 		border-radius: 10%;
 		display: flex;
 		font-size: 1rem;
-		font-weight: bold;
+		font-weight: 900;
 		height: 2rem;
 		justify-content: center;
 		margin: 0;
 		width: 2rem;
-		background-color: ${discovered ? "#ccc" : "rgba(20,30,48, 0.9);"};
+		background-color: ${discovered ? "var(--cell-discovered)" : "var(--primary-color)"};
 		user-select: none;
 		${discovered ? "pointer-events: none;" : "cursor: pointer;"}
 
 		:hover {
-			background-color: ${discovered ? "#ccc" : "rgba(20,30,48, 1)"};
+			background-color: ${discovered ? "var(--cell-discovered)" : "var(--primary-color-hover)"};
 		}
 
 		svg {
@@ -62,7 +61,13 @@ export const Cell: FC<CellProps> = ({
 			fill: var(--text);
 		}
 	`} disabled={discovered} {...props}>
-		{ flag ? <Flag/> : (!discovered ? "" : (discovered && mine ? <Bomb/> : value)) }
+		{ flag 
+			? <Flag style={{fill: discovered ? "var(--primary-color)" : "var(--text)"}}/>
+			: (!discovered
+				? ""
+				: (discovered && mine ? <HighlightOffIcon style={{fill: "black"}} /> : value)
+			)
+		}
 	</button>
 );
 
