@@ -16,18 +16,30 @@ export const useGame = (level = EASY,) => {
 	const [stage, setStage] = useState<MinesweeperState[][]>(createStage(levelDifficult.width, levelDifficult.height, INITIAL_STATE));
 	const [firstClick, setFirstClick] = useState<boolean>(true);
 	const [gameStarted, setGameStarted] = useState<boolean>(false);
+	const [correctFlags, setCorrectFlags] = useState<number>(0);
 	const [win, setWin] = useState<boolean>(false);
 	const [defeat, setDefeat] = useState<boolean>(false);
+	const [openAlert, setOpenAlert] = useState(false);
+
+	const alertOpen = () => {
+		setOpenAlert(true);
+	};
+
+	const alertClose = () => {
+		setOpenAlert(false);
+	};
 
 	const selectDifficult = (difficult: LevelData) => {
 		setLevelDifficult(difficult);
 		setFirstClick(true);
+		setCorrectFlags(0);
 		setGameStarted(false);
 		setStage(createStage(difficult.width, difficult.height, INITIAL_STATE));
 	}
 
 	const onStartGame = () => {
 		setFirstClick(true);
+		setCorrectFlags(0);
 		setDefeat(false);
 		setWin(false);
 		setGameStarted(true);
@@ -36,12 +48,25 @@ export const useGame = (level = EASY,) => {
 
 	const onGameDefeat = () => {
 		setDefeat(true);
+		alertOpen();
 		setGameStarted(false);
 	}
 
 	const onGameWin = () => {
 		setWin(true);
+		alertOpen();
 		setGameStarted(false);
+	}
+
+	const updateCorrectFlags = ([x, y]: Tuple<number>) => {
+		//TODO: on remove a correct flag we should setCorrectFlags(correctFlags - 1);
+		if (stage[x][y].mine) {
+			setCorrectFlags(correctFlags + 1);
+		}
+	}
+
+	const allFlagsCorrect = () => {
+		return correctFlags === levelDifficult.mines;
 	}
 
 	const toggleFlagCell = ([x, y]: Tuple<number>) => {
@@ -57,6 +82,7 @@ export const useGame = (level = EASY,) => {
 			levelDifficult.mines,
 			[x, y]
 		);
+		console.log(minesPositions)
 		const newStage = setMinesRadiuses(
 			stage,
 			minesPositions
@@ -64,6 +90,7 @@ export const useGame = (level = EASY,) => {
 		const discover = discoverZone(newStage, [x, y]);
 		setStage(discover);
 		setFirstClick(false);
+		setCorrectFlags(0);
 		setGameStarted(true);
 	}
 
@@ -75,13 +102,17 @@ export const useGame = (level = EASY,) => {
 		gameStarted,
 		win,
 		defeat,
+		openAlert,
+		alertClose,
 		setStage,
 		selectDifficult,
 		toggleFlagCell,
 		onFirstClick,
 		onStartGame,
 		onGameDefeat,
-		onGameWin
+		onGameWin,
+		updateCorrectFlags,
+		allFlagsCorrect
 	};
 }
 
