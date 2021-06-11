@@ -1,26 +1,25 @@
 :root {
 	--number0: transparent;
-	--number1: black;
-	--number2: green;
-	--number3: blue;
-	--number4: red;
-	--number5: orange;
-	--number6: purple;
-	--number7: salmon;
-	--number8: brown;
-	--text: #3f51b5;
+	--number1: #212121;
+	--number2: #33691E;
+	--number3: #006064;
+	--number4: #1A237E;
+	--number5: #4A148C;
+	--number6: #E65100;
+	--number7: #880E4F;
+	--number8: #B71C1C;
+	--cell-discovered: #CCCCCC;
+	--text: #FFFFFF;
+	--primary-color: #3F51B5;
+	--primary-color-hover: #283891;
+}
+
+html {
+	height: 100%;
 }
 
 body {
 	margin: 0;
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-		sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-		monospace;
+	font-family: monospace;
+	height: 100%;
 }
