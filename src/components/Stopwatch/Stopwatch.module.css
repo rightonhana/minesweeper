@@ -1,10 +1,12 @@
 .Stopwatch {
 	align-items: center;
-	border-radius: 5px;
-	border: 1px solid var(--text);
-	color: var(--text);
 	display: flex;
 	justify-content: center;
-	margin-bottom: 1rem;
+	height: 2.5rem;
 	user-select: none;
+	margin: 0 1rem;
+}
+
+.Text {
+	color: var(--primary-color);
 }
