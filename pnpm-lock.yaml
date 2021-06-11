@@ -3,6 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@emotion/css': ^11.1.3
   '@material-ui/core': ^4.11.4
+  '@material-ui/icons': ^4.11.2
   '@testing-library/jest-dom': ^5.12.0
   '@testing-library/react': ^11.2.6
   '@testing-library/user-event': ^12.8.3
@@ -19,6 +20,7 @@ specifiers:
 dependencies:
   '@emotion/css': 11.1.3
   '@material-ui/core': 4.11.4_c9b97d0291e0c7f7ae91672f3bb47b49
+  '@material-ui/icons': 4.11.2_7340ed9674ff7bd549dec69c7b7c4fcf
   '@testing-library/jest-dom': 5.12.0
   '@testing-library/react': 11.2.6_react-dom@17.0.2+react@17.0.2
   '@testing-library/user-event': 12.8.3
@@ -1804,6 +1806,25 @@ packages:
       react-dom: 17.0.2_react@17.0.2
       react-is: 17.0.2
       react-transition-group: 4.4.1_react-dom@17.0.2+react@17.0.2
+    dev: false
+
+  /@material-ui/icons/4.11.2_7340ed9674ff7bd549dec69c7b7c4fcf:
+    resolution: {integrity: sha512-fQNsKX2TxBmqIGJCSi3tGTO/gZ+eJgWmMJkgDiOfyNaunNaxcklJQFaFogYcFl0qFuaEz1qaXYXboa/bUXVSOQ==}
+    engines: {node: '>=8.0.0'}
+    peerDependencies:
+      '@material-ui/core': ^4.0.0
+      '@types/react': ^16.8.6 || ^17.0.0
+      react: ^16.8.0 || ^17.0.0
+      react-dom: ^16.8.0 || ^17.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.14.0
+      '@material-ui/core': 4.11.4_c9b97d0291e0c7f7ae91672f3bb47b49
+      '@types/react': 17.0.5
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
     dev: false
 
   /@material-ui/styles/4.11.4_c9b97d0291e0c7f7ae91672f3bb47b49:
