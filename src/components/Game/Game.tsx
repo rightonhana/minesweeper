@@ -12,11 +12,11 @@ export const Game: FC<GameProps> = ({
 	return (
 		<div
 			className={css`
-				max-width: ${width}rem;
+				max-width: calc(${width} + (0.2rem * ${width}));
 				display: grid;
 				grid-template-rows: repeat(
 					${stage.length},
-					calc(${width} / ${stage[0].length})rem
+					calc(${width} / ${stage[0].length})px
 				);
 				grid-template-columns: repeat(${stage[0].length}, 1fr);
 				grid-gap: 0.2rem;
