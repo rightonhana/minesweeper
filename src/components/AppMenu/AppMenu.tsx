@@ -3,7 +3,6 @@ import { FC, useState } from "react";
 import { EASY } from '../../constants/easy';
 import { HARD } from '../../constants/hard';
 import { MEDIUM } from '../../constants/medium';
-import when from '../../utils/when';
 import Stopwatch from '../Stopwatch';
 import styles from "./AppMenu.module.css";
 import AppMenuProps from './AppMenuProps';
@@ -30,11 +29,11 @@ export const AppMenu: FC<AppMenuProps> = ({
 		<AppBar position="fixed" {...props}>
 			<Toolbar className={styles.Toolbar}>
 				<Stopwatch timer={timer} />
-				{when(
-					gameStarted,
-					<Button color="inherit" onClick={resetGame}>Reset Game</Button>,
-					<Button color="inherit" onClick={startGame}>Start Game</Button>
-				)}
+				{
+					gameStarted
+					? <Button color="inherit" onClick={resetGame}>Reset Game</Button>
+					: <Button color="inherit" onClick={startGame}>Start Game</Button>
+				}
 				<Button
 					aria-controls="simple-menu"
 					aria-haspopup="true"
