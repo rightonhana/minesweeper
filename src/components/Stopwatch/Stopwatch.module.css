@@ -4,9 +4,6 @@
 	justify-content: center;
 	height: 2.5rem;
 	user-select: none;
-	margin: 0 1rem;
-}
-
-.Text {
-	color: var(--primary-color);
+	margin: 0 1.5rem;
+	color: var(--text);
 }
