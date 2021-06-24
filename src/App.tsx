@@ -9,18 +9,17 @@ import { EASY } from './constants/easy';
 import LevelData from './types/LevelData';
 import MinesweeperState from './types/MinesweeperState';
 import Tuple from './types/Tuple';
+import cellsDiscovered from "./utils/cellsDiscovered";
 import discoverEmptyZone from './utils/discoverEmptyZone';
 import isGameComplete from './utils/isGameComplete';
 import revealMines from './utils/mines/revealMines';
 import minesNearby from './utils/minesNearby';
 import setDiscovered from './utils/setDiscovered';
-import when from "./utils/when";
 
 /**TODO:
  * 		spread empty zone on click
  * 		onDiscover -> <button disable> attribute,
  * 		onDefeat -> disabled all buttons on stage
- * 		when a all cells discovered -> u should win... but for some reason you not -> clock still running
 */
 
 function App() {
@@ -30,21 +29,19 @@ function App() {
 		levelDifficult,
 		firstClick,
 		gameStarted,
-		win,
 		defeat,
-		openAlert,
-		alertClose,
 		setStage,
 		selectDifficult,
 		toggleFlagCell,
 		onFirstClick,
 		onStartGame,
+		onResetGame,
 		onGameDefeat,
 		onGameWin,
-		updateCorrectFlags,
-		allFlagsCorrect
+		currentCorrectFlags
 	} = useGame(EASY);
 
+	
 	const startGame = () => {
 		onStartGame();
 		resetStopwatch();
@@ -52,9 +49,8 @@ function App() {
 	}
 	
 	const resetGame = () => {
-		onStartGame();
+		onResetGame();
 		resetStopwatch();
-		startStopwatch();
 	}
 	
 	const onWin = () => {
@@ -73,12 +69,12 @@ function App() {
 		resetStopwatch();
 	}
 	const discoverZone = (state: MinesweeperState[][], [x, y]: Tuple<number>) =>
-		state[x][y].mine
-			? onDefeat(state)
-			: (!state[x][y].flag && minesNearby(state, [x, y])
-				? setDiscovered(state, [x, y])
-				: discoverEmptyZone(state, [x, y]));
-
+	state[x][y].mine
+		? onDefeat(state)
+		: (!state[x][y].flag && minesNearby(state, [x, y])
+			? setDiscovered(state, [x, y])
+			: discoverEmptyZone(state, [x, y]));
+	
 	const updateCell = ([x, y]: Tuple<number>) => {
 		if (!stage[x][y].flag) {
 			if (firstClick) {
@@ -94,23 +90,21 @@ function App() {
 			}
 		}
 	}
-
+	
 	const onClick = (event: MouseEvent, [x, y]: Tuple<number>) => {
 		event.preventDefault();
 		if (event.button === 2) {
 			toggleFlagCell([x, y]);
-			if (stage[x][y].flag) {
-				updateCorrectFlags([x, y]);
-				if (allFlagsCorrect()) {
-					onWin();
-				}
-			}
 		}
 		if (event.button === 0) {
 			updateCell([x, y]);
 		}
 	}
 
+	const cellsWithoutMines = (levelDifficult.height * levelDifficult.width) - levelDifficult.mines;
+
+	const win = cellsDiscovered(stage) === cellsWithoutMines || currentCorrectFlags === levelDifficult.mines;
+	
 	return (
 		<>
 			<AppMenu
@@ -123,8 +117,8 @@ function App() {
 			<div className={styles.Stage}>
 				<Game width={levelDifficult.width} stage={stage} onCellClick={onClick} />
 			</div>
-			{when(win, <Alert open={openAlert} message={"YOU WIN! 🎉"} handleClose={alertClose} />)}
-			{when(defeat, <Alert open={openAlert} message={"YOU LOOSE 💀"} handleClose={alertClose} />)}
+			<Alert open={win} message={"YOU WIN! 🎉"} handleClose={resetGame} />
+			<Alert open={defeat} message={"YOU LOOSE 💀"} handleClose={resetGame} />
 		</>
 	);
 }
