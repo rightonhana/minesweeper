@@ -16,12 +16,6 @@ import revealMines from './utils/mines/revealMines';
 import minesNearby from './utils/minesNearby';
 import setDiscovered from './utils/setDiscovered';
 
-/**TODO:
- * 		spread empty zone on click
- * 		onDiscover -> <button disable> attribute,
- * 		onDefeat -> disabled all buttons on stage
-*/
-
 function App() {
 	const { timer, startStopwatch, pauseStopwatch, resetStopwatch } = useStopwatch(0);
 	const { 
